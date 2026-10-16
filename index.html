@@ -53,10 +53,10 @@ function calc(){
   if(!(n>0)){$("out").innerHTML="";return}
   var h="",z=1.28;
   HIRE.forEach(function(H){
-    var cells="";
-    H.u.forEach(function(u,i){var m=hr(H.a10[i],H.a100[i],n)*n,sd=K[i]*Math.sqrt(n);
+    var cells="",tot=0;
+    H.u.forEach(function(u,i){var m=hr(H.a10[i],H.a100[i],n)*n,sd=K[i]*Math.sqrt(n);tot+=m;
       cells+="<div><div class='m'>"+u+"</div><div class='big'>~"+F(m)+"</div><div class='m'>likely "+F(Math.max(0,m-z*sd))+" to "+F(m+z*sd)+"</div></div>"});
-    h+="<div class='c'><h2>"+H.name+"</h2><div class='r'>"+cells+"</div>"+(n<100?"<div class='m t'>Below 100 turns the split between the two is less certain, you tend to get fewer of the second unit in small batches.</div>":"")+"</div>"});
+    h+="<div class='c'><h2>"+H.name+"</h2><div class='r'>"+cells+"</div>"+(H.u[0]==="Thugs"?"<div class='m t'>Total about "+F(tot)+" units</div>":"")+(n<100?"<div class='m t'>Below 100 turns the split between the two is less certain, you tend to get fewer of the second unit in small batches.</div>":"")+"</div>"});
   if(hu>0){var b=n*hu*rate;
     h+="<div class='c'><h2>Cash from collecting</h2><div class='big'>~$"+F(b*MEAN)+"</div><div class='m'>Lowest about $"+F(b)+", highest about $"+F(b*MAXM)+"</div><div class='m t'>"+F(hu)+" hustlers x "+F(n)+" turns. The luck factor is between +0% and about +33% on top of the base, no matter how many turns.</div></div>"}
   else h+="<div class='c'><h2>Cash from collecting</h2><div class='m'>Enter your number of hustlers above to see the cash estimate.</div></div>";
